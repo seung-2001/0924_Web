@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Member {
 
 	// int vs long
-	// log vs Long
+	// long vs Long
 
 	private Long userNo;
 	private String userId;
@@ -13,7 +13,7 @@ public class Member {
 	private String userName;
 	private String email;
 	private Date enrollDate;
-	private Date modifiyDate;
+	private Date modifyDate;
 	private String status;
 
 	public Member() {
@@ -21,7 +21,7 @@ public class Member {
 	}
 
 	public Member(Long userNo, String userId, String userPwd, String userName, String email, Date enrollDate,
-			Date modifiyDate, String status) {
+			Date modifyDate, String status) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -29,7 +29,7 @@ public class Member {
 		this.userName = userName;
 		this.email = email;
 		this.enrollDate = enrollDate;
-		this.modifiyDate = modifiyDate;
+		this.modifyDate = modifyDate;
 		this.status = status;
 	}
 
@@ -81,12 +81,12 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
-	public Date getModifiyDate() {
-		return modifiyDate;
+	public Date getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setModifiyDate(Date modifiyDate) {
-		this.modifiyDate = modifiyDate;
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	public String getStatus() {
@@ -100,7 +100,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifiyDate=" + modifiyDate + ", status="
+				+ ", email=" + email + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status="
 				+ status + "]";
 	}
 

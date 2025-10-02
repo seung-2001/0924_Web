@@ -18,24 +18,21 @@ public class MyInfoController extends HttpServlet {
 
 	public MyInfoController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 내 정보 조회란 뭘까??
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("userInfo");
 		Member userInfo = new MemberService().login(member);
 
 		if (userInfo != null) {
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("userInf", userInfo);
 			request.getRequestDispatcher("/WEB-INF/views/member/my_page.jsp").forward(request, response);
 		} else {
-			request.setAttribute("msg", "로그인 다시하셈 ㅋ");
+			request.setAttribute("msg", "이잉 실패쯨쯨");
 			request.getRequestDispatcher("/WEB-INF/views/common/result_page.jsp").forward(request, response);
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>딸깍</title>
+<title>Insert title here</title>
 <style>
 	form {
 		width : 90%;
@@ -16,12 +16,11 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	
 
-	<c:if test="${ userInfo eq null }">
+	<c:if test="${userInfo eq null }">
 		<script>
-			alert("글작성은 로그인 이후 가능합니다.");
-			location.href = '/kh';
+			alert("글 작성은 로그인 이후 가능합니다.")
+			location.href="/kh";
 		</script>
 	</c:if>
 
@@ -32,17 +31,16 @@
 		
         <form action="insert.board" method="post" id="insert-form"
         	  enctype="multipart/form-data">
-       	<!-- 파일첨부요청을 보낼 때 form태그에 반드시
-       		enctype="multipart/form-data" 라고 적혀있어야함
-       	 -->
+        	  <!-- 파일첨부요청을 보낼 때 form태그에 반드시
+        	  	enctype="multipart/form-data라고 적혀있어야함 -->
         
         	<div class="form-group">
 	        	<select name="category" class="form-control">
-                    <c:forEach var="c" items="${ category }">
+	        	<c:forEach items="${category}" var="c">
                     <option value="${c.categoryNo }">
-                        ${ c.categoryName }
+                        ${c.categoryName}
                     </option>
-                    </c:forEach>
+	        	</c:forEach>
 	        	</select>
         	</div>
 

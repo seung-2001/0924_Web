@@ -32,7 +32,7 @@ public class UpdatePwdController extends HttpServlet {
 		String updatePwd = request.getParameter("changePwd");
 
 		// 3) 식별할 수 있는 값이 필요함
-		// UPDATE MEMBER SET UESER_PWD = '새비밀번호'
+		// UPDATE MEMBER SET USER_PWD = '새비밀번호'
 		// WHERE USER_PWD = '기존비밀번호'
 
 		HttpSession session = request.getSession();
@@ -46,16 +46,15 @@ public class UpdatePwdController extends HttpServlet {
 			member.setUserPwd(updatePwd);
 		}
 
-		session.setAttribute("alertMsg", result > 0 ? "변경 성공 ~" : "변경 실패 ...");
+		session.setAttribute("alertMsg", result > 0 ? "변경성공 ~ " : "변경 실패...");
 
-		// 성공이든 실패든 마이페이지로 응답
+		// 성공이든 실패든 마에페이지로 응답
 		response.sendRedirect(request.getContextPath() + "/myPage");
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

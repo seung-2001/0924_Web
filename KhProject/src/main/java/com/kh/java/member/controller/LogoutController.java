@@ -25,9 +25,10 @@ public class LogoutController extends HttpServlet {
 
 		// session만료시키는 방법 (== 무효화한다)
 		request.getSession().invalidate();
-		request.getSession().setAttribute("alertMsg", "잘가쇼~");
+		request.getSession().setAttribute("alertMsg", "로그아웃 성공");
 
 		// 응답데이터 => 웰컴파일
+		// sendRedirect()
 
 		response.sendRedirect(request.getContextPath());
 
@@ -35,7 +36,6 @@ public class LogoutController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

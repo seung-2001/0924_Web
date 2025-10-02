@@ -22,11 +22,13 @@ public class SignUpController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		// POST
 		// 1) 인코딩 설정
 		request.setCharacterEncoding("UTF-8");
 
 		// 2) request객체로부터 요청 시 전달값 여부
+
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String userName = request.getParameter("userName");
@@ -39,26 +41,27 @@ public class SignUpController extends HttpServlet {
 		member.setUserName(userName);
 		member.setEmail(email);
 
-		// 4) 서비스로 간다...?(요청 처리)
+		// 4) 서비스로 간다 ...?(요청 처리)
 		int result = new MemberService().signUp(member);
 
-		// 5) 회원가입 성공했는지 안했는지에 따라서
+		// 5) 회원가입 성공했는지 안헀는지에 따라서
 		// 응답화면을 다르게 지정
-		if (result > 0) { // 성공
+
+		if (result > 0) { // 성공했다
 
 			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "회원가입 성공 ~ !!");
+			session.setAttribute("alertMsg", "회원가입 성공 ~ !");
 			response.sendRedirect(request.getContextPath());
+
 		} else { // 실패
-			request.setAttribute("msg", "화원가입 실패 ~~ 요런것도 못하냐~~");
-			request.getRequestDispatcher("/WEB-INF/views/common/result_page.jsp").forward(request, response);
+			request.setAttribute("msg", "회원가입 실패");
+			request.getRequestDispatcher("WEB-INF/views/common/result_page.jsp").forward(request, response);
 		}
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

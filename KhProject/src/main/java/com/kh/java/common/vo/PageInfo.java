@@ -1,6 +1,7 @@
 package com.kh.java.common.vo;
 
 public class PageInfo {
+
 	private int listCount;
 	private int currentPage;
 	private int pageLimit;

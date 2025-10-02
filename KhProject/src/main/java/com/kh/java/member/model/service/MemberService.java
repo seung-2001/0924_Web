@@ -13,8 +13,9 @@ public class MemberService {
 	private MemberDao md = new MemberDao();
 
 	public Member login(Member member) {
-		// 로그인 처리 -> DAO에 보내서 있나없네 -> 결과값반환
-		// validateMember(member); 비즈니스 로직
+		// 로그인 처리 -> DAO에 보내서 있나 없네 -> 결과값 반환
+		// validateMember(member); 비즈니스 로직.
+
 		SqlSession sqlSession = Template.getSqlSession();
 
 		Member loginMember = md.login(sqlSession, member);
@@ -25,17 +26,21 @@ public class MemberService {
 	}
 
 	public void validateMember(Member member) {
-		if (member.getUserId() == null || member.getUserId().isEmpty()) {
+
+		if ((member.getUserId() == null) || member.getUserId().trim().isEmpty()) {
 			return;
 		}
+
 		String pattern = "^[a-zA-Z0-9]{4,20}$";
-		if (member.getUserId().matches(pattern)) {
+
+		if (!member.getUserId().matches(pattern)) {
 			return;
 		}
-		// 비밀번호 검증 로직
+
 	}
 
 	public int signUp(Member member) {
+
 		SqlSession sqlSession = Template.getSqlSession();
 
 		int result = md.signUp(sqlSession, member);
@@ -50,6 +55,7 @@ public class MemberService {
 	}
 
 	public int update(Map<String, String> map) {
+
 		SqlSession session = Template.getSqlSession();
 
 		int result = md.update(session, map);
@@ -64,6 +70,7 @@ public class MemberService {
 	}
 
 	public int delete(Member member) {
+
 		SqlSession session = Template.getSqlSession();
 
 		int result = md.delete(session, member);
@@ -71,7 +78,6 @@ public class MemberService {
 		if (result > 0) {
 			session.commit();
 		}
-
 		session.close();
 
 		return result;
@@ -79,16 +85,15 @@ public class MemberService {
 
 	public int updatePwd(Map<String, String> map) {
 
-		SqlSession session = Template.getSqlSession();
+		SqlSession sqlSession = Template.getSqlSession();
 
-		int result = md.updatePwd(session, map);
+		int result = md.updatePwd(sqlSession, map);
 
 		if (result > 0) {
-			session.commit();
+			sqlSession.commit();
 		}
 
-		session.close();
-
+		sqlSession.close();
 		return result;
 	}
 

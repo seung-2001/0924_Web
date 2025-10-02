@@ -9,9 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Template {
 
-	// Connection객체의 역할을 대신할 SqlSession객체를 만들어서 반환해주는 메소드를 구현할 것
-
 	public static SqlSession getSqlSession() {
+
 		SqlSession sqlSession = null;
 
 		String config = "/mybatis-config.xml";
