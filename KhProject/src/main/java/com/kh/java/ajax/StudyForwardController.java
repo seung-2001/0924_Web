@@ -1,7 +1,6 @@
-package com.kh.java.board.controller;
+package com.kh.java.ajax;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.java.board.model.dto.ImageBoardDto;
-import com.kh.java.board.model.service.BoardService;
-
-@WebServlet("/images")
-public class ImageListController extends HttpServlet {
+@WebServlet("/study")
+public class StudyForwardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ImageListController() {
+	public StudyForwardController() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		List<ImageBoardDto> boards = new BoardService().selectImageList();
-
-		request.setAttribute("boards", boards);
-
-		request.getRequestDispatcher("/WEB-INF/views/image_board/thumbnail_list.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/study/study.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

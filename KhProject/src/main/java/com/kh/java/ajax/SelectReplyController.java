@@ -1,4 +1,4 @@
-package com.kh.java.board.controller;
+package com.kh.java.ajax;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,25 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.java.board.model.dto.ImageBoardDto;
+import com.google.gson.Gson;
 import com.kh.java.board.model.service.BoardService;
+import com.kh.java.board.model.vo.Reply;
 
-@WebServlet("/images")
-public class ImageListController extends HttpServlet {
+@WebServlet("/list.reply")
+public class SelectReplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ImageListController() {
+	public SelectReplyController() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<ImageBoardDto> boards = new BoardService().selectImageList();
+		Long boardNo = Long.parseLong(request.getParameter("boardNo"));
 
-		request.setAttribute("boards", boards);
+		List<Reply> reply = new BoardService().selectReply(boardNo);
 
-		request.getRequestDispatcher("/WEB-INF/views/image_board/thumbnail_list.jsp").forward(request, response);
+		// 응답
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(reply, response.getWriter());
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
